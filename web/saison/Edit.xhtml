@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SaisonEditDlg" widgetVar="SaisonEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSaisonTitle}">
+            <h:form id="SaisonEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{saisonController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSaisonLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{saisonController.selected.nom}" title="#{bundle.EditSaisonTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditSaisonLabel_datefin}" for="datefin" />
+                        <p:calendar id="datefin" pattern="MM/dd/yyyy" value="#{saisonController.selected.datefin}" title="#{bundle.EditSaisonTitle_datefin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSaisonLabel_datedebut}" for="datedebut" />
+                        <p:calendar id="datedebut" pattern="MM/dd/yyyy" value="#{saisonController.selected.datedebut}" title="#{bundle.EditSaisonTitle_datedebut}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSaisonLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{saisonController.selected.id}" title="#{bundle.EditSaisonTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{saisonController.update}" value="#{bundle.Save}" update="display,:SaisonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SaisonEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SaisonEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
