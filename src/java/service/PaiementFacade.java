@@ -31,7 +31,7 @@ public class PaiementFacade extends AbstractFacade<Paiement> {
         super(Paiement.class);
     }
     public List<Paiement> findByReservation(Reservation reservation) {
-        return em.createQuery("select P from Paiement P where P.reservation.id" + reservation.getId() + "'").getResultList();
+        return em.createQuery("select P from Paiement P where P.reservation.id =" + reservation.getId()).getResultList();
     }
     
 }

@@ -55,9 +55,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReservationTitle_montant}"/>
+                                <h:outputText value="id"/>
                             </f:facet>
-                            <h:outputText value="#{item.montant}"/>
+                            <h:outputText value="#{item.id}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -101,7 +101,7 @@
 
             <h:form id="PaiementListForm">
                 <p:panel header="#{bundle.ListPaiementTitle}">
-                    <p:dataTable id="datalist" value="#{paiementController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{reservationController.selected.paiements}" var="item"
                                  selectionMode="single" selection="#{paiementController.selected}"
                                  paginator="true"
                                  rowKey="#{item.id}"

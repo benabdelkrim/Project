@@ -31,7 +31,6 @@ public class ReservationController implements Serializable {
     private Reservation selected;
 
     public void detail(Reservation reservation) {
-       
         getSelected().setPaiements(paiementFacade.findByReservation(reservation));
     }
     

@@ -30,7 +30,7 @@
                         <p:selectOneMenu id="salle" value="#{reservationController.selected.salle}" >
                             <f:selectItems value="#{salleController.itemsAvailableSelectOne}"
                                            var="salleItem"
-                                           itemValue="#{salleItem}"/>
+                                           itemValue="#{salleItem}" itemLabel="#{salleItem.id}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateReservationLabel_client}" for="client" />
                         <p:selectOneMenu id="client" value="#{reservationController.selected.client}" >
