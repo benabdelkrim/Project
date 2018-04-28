@@ -29,7 +29,7 @@
                         <p:outputLabel value="#{bundle.CreatePaiementLabel_id}" for="id" />
                         <p:inputText id="id" value="#{paiementController.selected.id}" title="#{bundle.CreatePaiementTitle_id}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{paiementController.create}" value="#{bundle.Save}" update="display,:PaiementListForm:datalist,:growl" oncomplete="handleSubmit(args,'PaiementCreateDialog');"/>
+                    <p:commandButton actionListener="#{paiementController.save()}" value="#{bundle.Save}" update="display,:PaiementListForm:datalist,:growl" oncomplete="handleSubmit(args,'PaiementCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="PaiementCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -79,12 +79,22 @@ public class PaiementController implements Serializable {
     }
 
     public List<Paiement> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
-
+    
+    public void save(){
+        int res = getFacade().save(selected);
+        if( res == -1){
+            JsfUtil.addErrorMessage("Entrer un valide Type");
+        }else if(res==-2){
+            JsfUtil.addErrorMessage("Eroor :(");
+        }
+        else{
+            JsfUtil.addSuccessMessage("Paiment cree avec success");
+        }
+    }
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();

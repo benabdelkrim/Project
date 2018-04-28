@@ -12,14 +12,8 @@
             <h:form id="ReservationCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{reservationController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateReservationLabel_totalESP}" for="totalESP" />
-                        <p:inputText id="totalESP" value="#{reservationController.selected.totalESP}" title="#{bundle.CreateReservationTitle_totalESP}" />
-                        <p:outputLabel value="#{bundle.CreateReservationLabel_totalCheq}" for="totalCheq" />
-                        <p:inputText id="totalCheq" value="#{reservationController.selected.totalCheq}" title="#{bundle.CreateReservationTitle_totalCheq}" />
-                        <p:outputLabel value="#{bundle.CreateReservationLabel_totalPaiement}" for="totalPaiement" />
-                        <p:inputText id="totalPaiement" value="#{reservationController.selected.totalPaiement}" title="#{bundle.CreateReservationTitle_totalPaiement}" />
                         <p:outputLabel value="#{bundle.CreateReservationLabel_dateReservation}" for="dateReservation" />
-                        <p:calendar id="dateReservation" pattern="MM/dd/yyyy" value="#{reservationController.selected.dateReservation}" title="#{bundle.EditReservationTitle_dateReservation}"  showOn="button"/>
+                        <p:calendar id="dateReservation" pattern="yyyy-MM-dd" value="#{reservationController.selected.dateReservation}" title="#{bundle.EditReservationTitle_dateReservation}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateReservationLabel_montant}" for="montant" />
                         <p:inputText id="montant" value="#{reservationController.selected.montant}" title="#{bundle.CreateReservationTitle_montant}" />
                         <p:outputLabel value="#{bundle.CreateReservationLabel_avance}" for="avance" />
@@ -41,7 +35,7 @@
                         <p:outputLabel value="#{bundle.CreateReservationLabel_id}" for="id" />
                         <p:inputText id="id" value="#{reservationController.selected.id}" title="#{bundle.CreateReservationTitle_id}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{reservationController.create}" value="#{bundle.Save}" update="display,:ReservationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservationCreateDialog');"/>
+                    <p:commandButton actionListener="#{reservationController.save()}" value="#{bundle.Save}" update="display,:ReservationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservationCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ReservationCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

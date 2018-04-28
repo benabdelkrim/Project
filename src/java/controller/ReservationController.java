@@ -84,12 +84,21 @@ public class ReservationController implements Serializable {
     }
 
     public List<Reservation> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
-
+    
+    public void save(){
+        int res = getFacade().save(selected);
+        if(res == -1){
+            JsfUtil.addErrorMessage("Une réservation avec la même date existe déjà");
+        }else if(res == -2){
+            JsfUtil.addErrorMessage("Le nombre de tables est supérieur au nombre de tables dans la SALLE sélectionnée");
+        }else{
+            JsfUtil.addSuccessMessage("Réservation créée avec succès");
+        }
+    }
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
