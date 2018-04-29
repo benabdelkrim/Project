@@ -3,9 +3,11 @@ package controller;
 import bean.Reservation;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
+import java.io.IOException;
 import service.ReservationFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +20,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import net.sf.jasperreports.engine.JRException;
 
 @Named("reservationController")
 @SessionScoped
@@ -34,12 +37,19 @@ public class ReservationController implements Serializable {
         getSelected().setPaiements(paiementFacade.findByReservation(reservation));
     }
     
+    
+
     public ReservationController() {
     }
 
+    public void generatePdf() throws JRException, IOException {
+        ejbFacade.generatePdf();
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
     public Reservation getSelected() {
-        if(selected==null){
-            selected=new Reservation();
+        if (selected == null) {
+            selected = new Reservation();
         }
         return selected;
     }

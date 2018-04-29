@@ -6,6 +6,9 @@
 package service;
 
 import bean.Salle;
+import controller.util.SearchUtil;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,5 +31,13 @@ public class SalleFacade extends AbstractFacade<Salle> {
     public SalleFacade() {
         super(Salle.class);
     }
+    
+    public List<Salle> verifierDisponnibiliteSalle(Date dateReservation) {
+        String query = "select R.salle from Reservation R where 1=1 ";
+        if (dateReservation != null) {
+            query += SearchUtil.addConstraintDate("R", "dateReservation", "=", dateReservation);
+        }
+        return em.createQuery(query).getResultList();
+    }   
     
 }

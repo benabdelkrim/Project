@@ -83,21 +83,60 @@
                             </f:facet>
                             <h:outputText value="#{item.client.nom}"/>
                         </p:column>
-                         <p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Details"/>
                             </f:facet>
-                             <p:commandButton actionListener="#{reservationController.detail(item)}" update=":PaiementListForm:datalist" value="Details"></p:commandButton>
-                         </p:column>
+                            <p:commandButton actionListener="#{reservationController.detail(item)}" update=":PaiementListForm:datalist" value="Details"></p:commandButton>
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reservationController.prepareCreate}" update=":ReservationCreateForm" oncomplete="PF('ReservationCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReservationViewForm" oncomplete="PF('ReservationViewDialog').show()" disabled="#{empty reservationController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReservationEditForm" oncomplete="PF('ReservationEditDialog').show()" disabled="#{empty reservationController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reservationController.destroy}" update=":growl,datalist" disabled="#{empty reservationController.selected}"/>
+                            <p:commandButton id="exportButton" icon="ui-icon-pdf"  value="Export" action="#{reservationController.generatePdf()}" ajax="false"/>
+
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
+
+            <h:form id="SalleListForm">
+                <p:panel header="#{bundle.ListSalleTitle}">
+                    <p:dataTable id="datalist" value="#{salleController.selected}" var="item"
+                                 selectionMode="single" selection="#{salleController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalleTitle_nbrTable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nbrTable}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalleTitle_tele}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tele}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSalleTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:calendar id="dateReservation" pattern="MM/dd/yyyy" title="#{bundle.EditReservationTitle_dateReservation}"  showOn="button"/>
+                            <p:commandButton value="salle disponible" actionListener="#{salleController.verifierDisponnibiliteSalle(dateReservation)}" update=":SalleListForm:datalist"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+
 
             <h:form id="PaiementListForm">
                 <p:panel header="#{bundle.ListPaiementTitle}">

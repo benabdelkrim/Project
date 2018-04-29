@@ -6,6 +6,7 @@ import controller.util.JsfUtil.PersistAction;
 import service.SalleFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -162,4 +163,7 @@ public class SalleController implements Serializable {
 
     }
 
+    public void verifierDisponnibiliteSalle(Date dateReservation) {
+        ejbFacade.verifierDisponnibiliteSalle(dateReservation);
+    }
 }
