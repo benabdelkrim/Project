@@ -35,6 +35,7 @@
                         <p:outputLabel value="#{bundle.CreateReservationLabel_id}" for="id" />
                         <p:inputText id="id" value="#{reservationController.selected.id}" title="#{bundle.CreateReservationTitle_id}" />
                     </p:panelGrid>
+                    <p:commandButton actionListener="#{reservationController.create()}" value="#{bundle.Save}" update="display,:ReservationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservationCreateDialog');"/>
                     <p:commandButton actionListener="#{reservationController.save()}" value="#{bundle.Save}" update="display,:ReservationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReservationCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ReservationCreateDialog.hide()"/>
                 </h:panelGroup>

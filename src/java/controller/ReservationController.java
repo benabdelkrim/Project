@@ -3,9 +3,11 @@ package controller;
 import bean.Reservation;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
+import java.io.IOException;
 import service.ReservationFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,12 +36,19 @@ public class ReservationController implements Serializable {
         getSelected().setPaiements(paiementFacade.findByReservation(reservation));
     }
     
+    
+
     public ReservationController() {
     }
 
+    public void generatePdf()  {
+        ejbFacade.generatePdf();
+        FacesContext.getCurrentInstance().responseComplete();
+    }
+
     public Reservation getSelected() {
-        if(selected==null){
-            selected=new Reservation();
+        if (selected == null) {
+            selected = new Reservation();
         }
         return selected;
     }
